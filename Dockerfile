@@ -56,6 +56,6 @@ RUN \
 
 # copy files
 COPY root/ /
-[ -d /app/wg++/siteini.pack.update ] &&  cp -rf /app/wg++/siteini.pack.update /app/wg++/siteini.pack
+RUN [ -d /app/wg++/siteini.pack.update ] &&  cp -rf /app/wg++/siteini.pack.update /app/wg++/siteini.pack
 # ports and volumes
 VOLUME /config /data
