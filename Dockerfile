@@ -28,13 +28,12 @@ RUN \
 	wget \
 	unzip && \
  echo "**** install webgrabplus ****" && \
- WEBGRAB_BRANCH=${WEBGRAB_VER%.*} && \
+ WEBGRAB_BRANCH=${WEBGRAB_VER%.*} && echo $WEBGRAB_BRANCH && echo WEBGRAB_VER && \
  mkdir -p \
 	/app/wg++ && \
  curl -o /tmp/wg++.tar.gz -L \
 	"http://webgrabplus.com/sites/default/files/download/SW/V${WEBGRAB_VER}/WebGrabPlus_V${WEBGRAB_BRANCH}_install.tar.gz" && \
- tar xzf \
- /tmp/wg++.tar.gz -C \
+ tar xzf /tmp/wg++.tar.gz -C \
 	/app/wg++ --strip-components=1 && \
  WGUPDATE_BRANCH=${WGUPDATE_VER%%_*} && \
  curl -o \
