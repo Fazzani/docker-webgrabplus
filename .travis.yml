@@ -1,0 +1,21 @@
+language: ruby
+sudo: required
+dist: trusty
+os:
+  - linux
+branches:
+  only:
+    - master
+services:
+  - docker
+script: |
+  docker login -u=$DOCKER_USER -p=$DOCKER_PASS
+  docker build --no-cache=true -t "synker/webgrabplus:${TRAVIS_BUILD_NUMBER}" -t synker/webgrabplus:latest .
+  docker push synker/webgrabplus
+
+notifications: # set notification options
+  email:
+    recipients:
+      - tunisienheni@gmail.com
+    on_success: change
+    on_failure: change
