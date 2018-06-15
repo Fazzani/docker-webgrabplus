@@ -50,5 +50,6 @@ RUN \
 COPY root/ /
 RUN [ -d /app/wg++/siteini.pack.update ] && \
  cp -rf /app/wg++/siteini.pack.update /app/wg++/siteini.pack
+RUN cp -rf /app/wg++/bin /config
 # ports and volumes
 VOLUME /config /data
