@@ -16,3 +16,5 @@ chown -R abc:abc \
 	/config \
 	/data
 
+chmod +x /defaults/update.sh
+chmod +x /app/wg++/bin/SiteIni.Pack.Update.sh

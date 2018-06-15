@@ -25,6 +25,7 @@ RUN \
 	libmono-system-data4.0-cil \
 	libmono-system-web4.0-cil \
 	mono-runtime \
+	wget \
 	unzip && \
  echo "**** install webgrabplus ****" && \
  WEBGRAB_BRANCH=${WEBGRAB_VER%.*} && \
