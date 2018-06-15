@@ -10,7 +10,7 @@ services:
   - docker
 script: |
   docker login -u=$DOCKER_USER -p=$DOCKER_PASS
-  docker build --no-cache=true -t "synker/webgrabplus:${TRAVIS_BUILD_NUMBER}" -t synker/webgrabplus:latest .
+  docker build --build-arg WGUPDATE_VER=2.1 --no-cache=true -t "synker/webgrabplus:${TRAVIS_BUILD_NUMBER}" -t synker/webgrabplus:latest .
   docker push synker/webgrabplus
 
 notifications: # set notification options

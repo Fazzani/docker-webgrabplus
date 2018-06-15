@@ -8,7 +8,7 @@ LABEL maintainer="saarg"
 
 # package versions
 ARG WEBGRAB_VER="2.0.0"
-ARG WGUPDATE_VER="2.1.5_beta"
+ARG WGUPDATE_VER="2.1"
 
 # environment variables.
 ARG DEBIAN_FRONTEND="noninteractive"
@@ -56,6 +56,7 @@ RUN \
 
 # copy files
 COPY root/ /
-RUN [ -d /app/wg++/siteini.pack.update ] &&  cp -rf /app/wg++/siteini.pack.update /app/wg++/siteini.pack
+RUN [ -d /app/wg++/siteini.pack.update ] && \
+ cp -rf /app/wg++/siteini.pack.update /app/wg++/siteini.pack
 # ports and volumes
 VOLUME /config /data
