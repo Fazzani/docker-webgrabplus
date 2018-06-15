@@ -28,20 +28,13 @@ RUN \
 	wget \
 	unzip && \
  echo "**** install webgrabplus ****" && \
- WEBGRAB_BRANCH=${WEBGRAB_VER%.*} && echo $WEBGRAB_BRANCH && echo WEBGRAB_VER && \
+ WEBGRAB_BRANCH=${WEBGRAB_VER%.*} && \
  mkdir -p \
 	/app/wg++ && \
  curl -o /tmp/wg++.tar.gz -L \
 	"http://webgrabplus.com/sites/default/files/download/SW/V${WEBGRAB_VER}/WebGrabPlus_V${WEBGRAB_BRANCH}_install.tar.gz" && \
  tar xzf /tmp/wg++.tar.gz -C \
 	/app/wg++ --strip-components=1 && \
- WGUPDATE_BRANCH=${WGUPDATE_VER%%_*} && \
- curl -o \
- /tmp/update.tar.gz -L \
-	"http://webgrabplus.com/sites/default/files/download/SW/V${WGUPDATE_BRANCH}/WebGrabPlus_V${WGUPDATE_VER}_install.tar.gz" && \
- tar xf \
- /tmp/update.tar.gz -C \
-	/app/wg++/bin/ --strip-components=2 && \
  echo "**** download siteini.pack ****" && \
  curl -o \
  /tmp/ini.zip -L \
