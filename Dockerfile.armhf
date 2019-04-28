@@ -1,4 +1,4 @@
-FROM lsiobase/ubuntu:xenial
+FROM lsiobase/ubuntu:arm32v7-xenial
 
 # set version label
 ARG BUILD_DATE
@@ -7,13 +7,8 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="saarg"
 
 # package versions
-<<<<<<< HEAD
-ARG WEBGRAB_VER="2.1.0"
-ARG WGUPDATE_VER="2.1"
-=======
 ARG WEBGRAB_VER="2.0.0"
 ARG WGUPDATE_VER="2.1.7_beta"
->>>>>>> pr/1
 
 # environment variables.
 ARG DEBIAN_FRONTEND="noninteractive"
@@ -30,7 +25,6 @@ RUN \
 	libmono-system-data4.0-cil \
 	libmono-system-web4.0-cil \
 	mono-runtime \
-	wget \
 	unzip && \
  echo "**** install webgrabplus ****" && \
  WEBGRAB_BRANCH=${WEBGRAB_VER%.*} && \
@@ -38,8 +32,16 @@ RUN \
 	/app/wg++ && \
  curl -o /tmp/wg++.tar.gz -L \
 	"http://webgrabplus.com/sites/default/files/download/SW/V${WEBGRAB_VER}/WebGrabPlus_V${WEBGRAB_BRANCH}_install.tar.gz" && \
- tar xzf /tmp/wg++.tar.gz -C \
+ tar xzf \
+ /tmp/wg++.tar.gz -C \
 	/app/wg++ --strip-components=1 && \
+ WGUPDATE_BRANCH=${WGUPDATE_VER%%_*} && \
+ curl -o \
+ /tmp/update.tar.gz -L \
+	"http://webgrabplus.com/sites/default/files/download/SW/V${WGUPDATE_BRANCH}/WebGrabPlus_V${WGUPDATE_VER}_install.tar.gz" && \
+ tar xf \
+ /tmp/update.tar.gz -C \
+	/app/wg++/bin/ --strip-components=2 && \
  echo "**** download siteini.pack ****" && \
  curl -o \
  /tmp/ini.zip -L \
@@ -53,8 +55,6 @@ RUN \
 
 # copy files
 COPY root/ /
-RUN [ -d /app/wg++/siteini.pack.update ] && \
- cp -rf /app/wg++/siteini.pack.update /app/wg++/siteini.pack
-RUN cp -rf /app/wg++/bin /config
+
 # ports and volumes
 VOLUME /config /data
